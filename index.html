@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis de Datos + Vacuum Cleaner Agent</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Roboto+Slab:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Estilos generales del análisis de datos */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Roboto Slab', serif;
+      margin: 0;
+      padding: 0;
+      background: #1c1c1c;
+      color: #eaeaea;
+    }
+    header {
+      background: linear-gradient(to right, #3a0a0a, #1a0000);
+      color: #fff8dc;
+      text-align: center;
+      padding: 3rem 1rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    }
+    header h1 {
+      font-family: 'UnifrakturCook', cursive;
+      margin-bottom: 0.5rem;
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+    header p { margin: 0; font-style: italic; color: #dcdcdc; }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h2, h3, h4 { color: #c8a2c8; }
+    .card {
+      background: #2b2b2b;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+      border: 1px solid #555;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .chart-container {
+      width: 100%;
+      height: 400px;
+      margin-top: 2rem;
+    }
+    .btn {
+      background-color: #5a0f0f;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .btn:hover { background-color: #8b0000; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+    th { background-color: #3b3b3b; color: #f0e68c; }
+    td { background-color: #2c2c2c; }
+    ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    li::marker { color: #b22222; }
+    footer {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid #444;
+    }
+    pre {
+      background: #121212;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      color: #f8f8f2;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Estilos del Vacuum Cleaner Agent */
+    #vacuum-agent-section {
+      background-color: #121212;
+      padding: 3rem 1rem;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    #vacuum-agent-section h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #00c4ff;
+    }
+    #log {
+      background: #1e1e1e;
+      border: 1px solid #00c4ff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(0, 196, 255, 0.5);
+      display: inline-block;
+      min-width: 320px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      text-align: left;
+      max-width: 80%;
+      min-height: 100px;
+      overflow: auto;
+      white-space: pre-wrap;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Análisis de Datos - INE y Árboles de Decisión</h1>
+    <p>Visualización y análisis de datos de consumo de agua por actividades económicas</p>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Regresión con Datos del INE</h2>
+      <p>Analizamos los datos de consumo de agua por actividades económicas utilizando modelos de regresión.</p>
+      <div class="chart-container" id="regresionChart"></div>
+      <div id="regressionResults">
+        <h4>Resultados de la Regresión</h4>
+        <p>Los resultados se mostrarán aquí cuando se carguen los datos.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Árboles de Decisión</h2>
+      <p>Clasificación de datos con precisión cercana al 100% usando tres atributos.</p>
+      <div style="overflow-x:auto;">
+        <table id="restaurantTable">
+          <thead>
+            <tr>
+              <th>Ejemplo</th><th>Alt</th><th>Bar</th><th>Fri</th><th>Hun</th><th>Pat</th><th>Price</th><th>Rain</th><th>Res</th><th>Type</th><th>Est</th><th>WillWait</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <h3>Atributos Seleccionados</h3>
+      <ul id="selectedAttributes"></ul>
+      <div class="chart-container" id="decisionTreeChart"></div>
+    </div>
+  </div>
+
+  <!-- Sección del Vacuum Cleaner Agent -->
+  <section id="vacuum-agent-section">
+    <h2>🤖 Simple Reflex Agent: Vacuum Cleaner</h2>
+    <p id="log">Initializing...</p>
+  </section>
+
+  <footer>
+    <p>Inteligencia artificial 1 | <span id="currentYear">2025</span></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
+  <script src="javascript/regresion.js"></script>
+  <script src="javascript/arbol-decisiones.js"></script>
+  <script src="javascript/cargador-archivos.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
